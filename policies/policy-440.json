@@ -1,0 +1,14 @@
+{
+  "policyId": "Policy-440",
+  "owner": "Admin",
+  "allowedRoles": [
+    "Manager",
+    "Supervisor"
+  ],
+  "requiresZKP": true,
+  "conditions": {
+    "time": "08:00-18:00",
+    "location": "Building 0",
+    "deviceTrustLevel": "2"
+  }
+}

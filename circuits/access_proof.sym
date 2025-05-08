@@ -1,0 +1,12 @@
+1,1,0,main.isValid
+2,-1,0,main.roleHash
+3,-1,0,main.timeHash
+4,-1,0,main.locationHash
+5,-1,0,main.deviceTrustHash
+6,-1,0,main.policyHash
+7,-1,0,main.roleMatch
+8,-1,0,main.timeMatch
+9,-1,0,main.locationMatch
+10,-1,0,main.deviceMatch
+11,2,0,main.intermediate1
+12,3,0,main.intermediate2
