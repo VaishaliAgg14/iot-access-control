@@ -19,7 +19,7 @@ async function main() {
 
     try {
         const startTimestamp = Date.now();
-        for(let i=0;i<10;i++){
+        for(let i=0;i<200;i++){
             const policy = `policy-${i}`;
             const policyId = ethers.keccak256(ethers.toUtf8Bytes(policy));
             console.log("Policy ID:", policyId);

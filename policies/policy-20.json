@@ -9,6 +9,6 @@
   "conditions": {
     "time": "08:00-18:00",
     "location": "Building 0",
-    "deviceTrustLevel": "5"
+    "deviceTrustLevel": "4"
   }
 }

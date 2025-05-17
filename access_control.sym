@@ -1,0 +1,14 @@
+1,1,0,main.isValid
+2,2,0,main.timeHash
+3,3,0,main.locationHash
+4,4,0,main.deviceTrustHash
+5,5,0,main.policyTimeHash
+6,6,0,main.policyLocationHash
+7,7,0,main.policyDeviceTrustHash
+8,8,0,main.timeMatch
+9,9,0,main.locationMatch
+10,10,0,main.deviceMatch
+11,11,0,main.timeMatchIsZero
+12,12,0,main.locationMatchIsZero
+13,13,0,main.deviceMatchIsZero
+14,14,0,main.intermediate

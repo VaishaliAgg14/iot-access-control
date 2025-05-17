@@ -2,80 +2,77 @@ const { ethers } = require("ethers");
 require("dotenv").config();
 const HABACPolicy = require('../artifacts-zk/contracts/HABAC.sol/HABACPolicy.json');
 const verifier = require('../artifacts-zk/contracts/verifier.sol/Groth16Verifier.json');
-const {Provider , Wallet} = require("zksync-ethers");
+const { Provider, Wallet } = require("zksync-ethers");
 const fs = require("fs");
 const path = require("path");
 
-
-async function main() {
+async function verifyAccessRequest(index, nonce) {
     const provider = new Provider("https://sepolia.era.zksync.dev");
-        const wallet = new Wallet(process.env.PRIVATE_KEY, provider);
-    // Replace with your deployed contract addresses
-    const habacPolicyAddress = "0x3Dc1af1438fbe934a7d2226C638D94e908F05a73"; 
-    const verifierAddress = "0xf8558abBcd2C8a7171cf2cF799121aA96d4335bD";
-
-    // const habacPolicyABI = [
-    //     "function verifyAccess(bytes32 _policyId,uint[2] calldata _pA,uint[2][2] calldata _pB,uint[2] calldata _pC,uint[1] calldata _pubSignals) public returns (bool) "
-    // ];
-
-    // const verifierABI = [
-    //     "function verifyProof(uint[2] calldata _pA, uint[2][2] calldata _pB, uint[2] calldata _pC, uint[1] calldata _pubSignals) public view returns (bool)"
-    // ];
+    const wallet = new Wallet(process.env.PRIVATE_KEY, provider);
+    const habacPolicyAddress = "0xF5dB6B948Ec2b3F70787d8Df9768b21412F42B4D";
+    const verifierAddress = "0x652036Fc0A2a8fed614ECdA91a42FEFB2F47f81c";
 
     const habacContract = new ethers.Contract(habacPolicyAddress, HABACPolicy.abi, wallet);
     const verifierContract = new ethers.Contract(verifierAddress, verifier.abi, wallet);
 
-    // Replace with actual proof values from proof.json
     const proofPath = path.join(__dirname, "..", "circuits", "proof.json");
-        const proof = JSON.parse(fs.readFileSync(proofPath, "utf-8"));
-    
-        // Format the proof for the verifier contract
-        const formattedProof = {
-            pi_a: proof.pi_a.slice(0, 2), // Remove the last element (1)
-            pi_b: [                        // Reverse inner arrays for Solidity
-                [proof.pi_b[0][1], proof.pi_b[0][0]],
-                [proof.pi_b[1][1], proof.pi_b[1][0]]
-            ],
-            pi_c: proof.pi_c.slice(0, 2), // Remove the last element (1)
-        };
-    
-        const publicInputs = [
-            // This should match the policy hash from your input.json
-            ethers.toBigInt("0x836d4d2e529aa4a7847561351541d18b4d5a2a595899bfcaeea604298a926bcd")
-        ];
-    
-        const start =  Date.now();
-    console.log("Verifying ZKP proof on zkSync Layer-2...");
+    const proof = JSON.parse(fs.readFileSync(proofPath, "utf-8"));
+
+    const formattedProof = {
+        pi_a: proof.pi_a.slice(0, 2),
+        pi_b: [
+            [proof.pi_b[0][1], proof.pi_b[0][0]],
+            [proof.pi_b[1][1], proof.pi_b[1][0]]
+        ],
+        pi_c: proof.pi_c.slice(0, 2),
+    };
+
+    console.log(`Verifying ZKP proof for request ${index} on zkSync Layer-2...`);
     const proofValid = await verifierContract.verifyProof(
         formattedProof.pi_a,
         formattedProof.pi_b,
         formattedProof.pi_c,
         ["1"]
     );
-    console.log("ZKP Proof Verified:", proofValid);
-    // console.log("Gas Used in proof verification:" , proofValid.gasUsed.toString());
 
     if (!proofValid) {
-        console.error("Proof verification failed.");
-        return;
+        console.error(`Proof verification failed for request ${index}.`);
+        return { success: false, gasUsed: 0 };
     }
-    const end = Date.now();
-    console.log("Proof verified in", end - start, "ms");
 
-
-    console.log("Checking access control...");
-    const start1 = Date.now();
-    const accessResult = await habacContract.verifyAccess(
-        ethers.keccak256(ethers.toUtf8Bytes("policy2")),
+    console.log(`Checking access control for request ${index}...`);
+    const tx = await habacContract.verifyAccess(
+        ethers.keccak256(ethers.toUtf8Bytes(`policy-${index}`)),
         formattedProof.pi_a,
         formattedProof.pi_b,
         formattedProof.pi_c,
-        ["1"]
+        ["1"],
+        { nonce: nonce }
     );
-    // console.log("Access Granted:", accessResult);
-    const end1 = Date.now();
-    console.log("Access verified in", end1 - start1, "ms");
-    // console.log("Gas Used in access verification:" , accessResult.gasUsed.toString());
+
+    const receipt = await tx.wait();
+    console.log(`Access Granted for request ${index}:`, receipt.status === 1);
+    return { success: receipt.status === 1, gasUsed: BigInt(receipt.gasUsed.toString()) };
+}
+
+async function main() {
+    const provider = new Provider("https://sepolia.era.zksync.dev");
+    const wallet = new Wallet(process.env.PRIVATE_KEY, provider);
+    const startTime = Date.now();
+    let nonce = await provider.getTransactionCount(wallet.address);
+
+    const requests = Array.from({ length: 50 }, (_, i) => verifyAccessRequest(i, nonce + i));
+    const results = await Promise.all(requests);
+
+    let totalGasUsed = BigInt(0);
+    results.forEach((result, index) => {
+        console.log(`Request ${index} result:`, result.success ? "Access Granted" : "Access Denied", `Gas Used: ${result.gasUsed}`);
+        totalGasUsed += result.gasUsed;
+    });
+
+    const endTime = Date.now();
+    console.log(`Total time for 50 requests: ${endTime - startTime} ms`);
+    console.log(`Total gas used for 50 requests: ${totalGasUsed.toString()}`);
 }
 
 main().catch((error) => {

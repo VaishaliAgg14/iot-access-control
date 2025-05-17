@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Number of policies to generate
-const NUM_POLICIES = 500;
+const NUM_POLICIES = 1000;
 const policiesDir = path.join(__dirname, "../policies");
 
 // Ensure the directory exists

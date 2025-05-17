@@ -6,8 +6,9 @@ require("dotenv").config();
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   zksolc: {
-    version: "latest",
+    version: "1.5.8",
     compilerSource: "binary",
+    binaryPath:"C:\Users\priya\zksolc",
     settings: {
       codegen: "yul",  // Added codegen setting
       optimizer: {

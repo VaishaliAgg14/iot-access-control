@@ -33,14 +33,14 @@
         },
         "eraVersion": "1.0.1",
         "zksolc": {
-          "version": "1.5.11",
+          "version": "1.5.8",
           "compilerSource": "binary",
           "settings": {
             "optimizer": {
               "enabled": true,
               "mode": "3"
             },
-            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.11",
+            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.8",
             "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
             "areLibrariesMissing": false,
             "experimental": {},
@@ -48,7 +48,8 @@
             "libraries": {},
             "enableEraVMExtensions": false,
             "forceEVMLA": false
-          }
+          },
+          "binaryPath": "C:Userspriyazksolc"
         }
       },
       "imports": [
@@ -93,14 +94,14 @@
         },
         "eraVersion": "1.0.1",
         "zksolc": {
-          "version": "1.5.11",
+          "version": "1.5.8",
           "compilerSource": "binary",
           "settings": {
             "optimizer": {
               "enabled": true,
               "mode": "3"
             },
-            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.11",
+            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.8",
             "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
             "areLibrariesMissing": false,
             "experimental": {},
@@ -108,7 +109,8 @@
             "libraries": {},
             "enableEraVMExtensions": false,
             "forceEVMLA": false
-          }
+          },
+          "binaryPath": "C:Userspriyazksolc"
         }
       },
       "imports": [],
@@ -151,14 +153,14 @@
         },
         "eraVersion": "1.0.1",
         "zksolc": {
-          "version": "1.5.11",
+          "version": "1.5.8",
           "compilerSource": "binary",
           "settings": {
             "optimizer": {
               "enabled": true,
               "mode": "3"
             },
-            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.11",
+            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.8",
             "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
             "areLibrariesMissing": false,
             "experimental": {},
@@ -166,7 +168,8 @@
             "libraries": {},
             "enableEraVMExtensions": false,
             "forceEVMLA": false
-          }
+          },
+          "binaryPath": "C:Userspriyazksolc"
         }
       },
       "imports": [],
@@ -178,8 +181,8 @@
       ]
     },
     "C:\\Users\\priya\\Downloads\\BTP SEM8 MATERIAL\\iot-access-control\\contracts\\verifier.sol": {
-      "lastModificationDate": 1741152500546,
-      "contentHash": "a1faddf34e42143e952705188795c832",
+      "lastModificationDate": 1747337402266,
+      "contentHash": "ab2338289685a1cb0e36932c9844724a",
       "sourceName": "contracts/verifier.sol",
       "solcConfig": {
         "version": "0.8.28",
@@ -209,14 +212,14 @@
         },
         "eraVersion": "1.0.1",
         "zksolc": {
-          "version": "1.5.11",
+          "version": "1.5.8",
           "compilerSource": "binary",
           "settings": {
             "optimizer": {
               "enabled": true,
               "mode": "3"
             },
-            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.11",
+            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.8",
             "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
             "areLibrariesMissing": false,
             "experimental": {},
@@ -224,7 +227,8 @@
             "libraries": {},
             "enableEraVMExtensions": false,
             "forceEVMLA": false
-          }
+          },
+          "binaryPath": "C:Userspriyazksolc"
         }
       },
       "imports": [],
@@ -267,14 +271,14 @@
         },
         "eraVersion": "1.0.1",
         "zksolc": {
-          "version": "1.5.11",
+          "version": "1.5.8",
           "compilerSource": "binary",
           "settings": {
             "optimizer": {
               "enabled": true,
               "mode": "3"
             },
-            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.11",
+            "compilerPath": "C:\\Users\\priya\\AppData\\Local\\hardhat-nodejs\\Cache\\compilers-v2\\zksolc\\zksolc-v1.5.8",
             "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
             "areLibrariesMissing": false,
             "experimental": {},
@@ -282,7 +286,8 @@
             "libraries": {},
             "enableEraVMExtensions": false,
             "forceEVMLA": false
-          }
+          },
+          "binaryPath": "C:Userspriyazksolc"
         }
       },
       "imports": [],
